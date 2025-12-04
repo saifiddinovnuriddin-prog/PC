@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulotlar | N_Comp_Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles1.css">
+</head>
+<body>
+<header class="head">
+    <div class="logo">
+        <h2 onclick="window.location.href='admin.html'">N_Comp_Store</h2>
+    </div>
+    <nav class="nav" id="navMenu">
+        <ul id="navList">
+            <li><a href="index.html">Bosh sahifa</a></li>
+            <li><a href="products.html">Mahsulotlar</a></li>
+            <li><a href="zapchast.html">Zapchast</a></li>
+            <li><a href="yigish.html">Yig'ish</a></li>
+            <li><a href="korzinka.html">Korzina</a></li>
+            <li><a href="aloqa.html">Aloqa</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+        <i onclick="window.location.href='products1.html'" class="fa-solid fa-language"></i>
+
+</header>
+
+    <div class="cart-btn" onclick="location.href='korzinka.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Savat">
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glitch barch">BARCHA MAHSULOTLAR</h1>
+        </div>
+        <div class="particles" id="particles"></div>
+    </section>
+
+    <div class="section-compshop">
+        <h2>N_Comp_Store PREMIUM</h2>
+    </div>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="product-title" style="color:#ff3333;">CARBON</div>
+            <img src="./67058610.jpg.webp" alt="CARBON" class="product-img">
+            <div class="product-info">
+                <h3>N_Comp_Store CARBON</h3>
+                <div class="price">380 000 000 so'm</div>
+        <div class="specs">Dual Xeon • 256GB ECC • 4×RTX 5090 • 8TB RAID</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+        data-name="N_Comp_Store CARBON"
+        data-price="380000000"
+        data-img="./67058610.jpg.webp"
+        data-cpu="Dual Xeon Platinum"
+        data-gpu="4×RTX 5090"
+        data-ram="256GB ECC DDR5"
+        data-ssd="8TB RAID"
+                data-cooling="Custom Enterprise Cooling">
+                Sotib olish
+            </button>
+        </div>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-title" style="color:#ffd700;">GOLD</div>
+        <img src="./64607477.jpg.webp" alt="GOLD" class="product-img">
+        <div class="product-info">
+            <h3>N_Comp_Store GOLD</h3>
+            <div class="price">15 000 000 so'm</div>
+            <div class="specs">i9-14900K • 128GB RAM • RTX 5090 • Custom Loop</div>
+            
+            <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store GOLD"
+                data-price="15000000"
+                data-img="./64607477.jpg.webp"
+                data-cpu="i9-14900K"
+                data-gpu="RTX 5090"
+                data-ram="128GB DDR5"
+                data-cooling="Custom Loop"
+                data-ssd="2TB NVMe">
+                Sotib olish
+            </button>
+            <button class="buy-btn1"><a href="./kuproq.html">Ko'proq bilish</a></button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#ff00ff;">HELIUM PLUS</div>
+    <img src="./1.SI50xra45GdCbyZiaM8Ds19n5mHKZ2ZvAmLmZcRv7G3C.1Ij_pqH3hrqgavNFMQJ_DWtjBzpRMz88FZX9J9Ym4aQ" alt="HELIUM PLUS" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store HELIUM PLUS</h3>
+        <div class="price">14 000 000 so'm</div>
+        <div class="specs">Ryzen 9 7950X3D • 64GB DDR5 • RTX 5080 • AIO 360mm</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store HELIUM PLUS"
+                data-price="14000000"
+                data-img="./1.SI50xra45GdCbyZiaM8Ds19n5mHKZ2ZvAmLmZcRv7G3C.1Ij_pqH3hrqgavNFMQJ_DWtjBzpRMz88FZX9J9Ym4aQ"
+                data-cpu="Ryzen 9 7950X3D"
+                data-gpu="RTX 5080"
+                data-ram="64GB DDR5"
+                data-cooling="AIO 360mm">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="hit-badge">ХИТ ПРОДАЖ</div>
+    <div class="product-title" style="color:#00ffff;">SILVER</div>
+    <img src="./28548913.jpg.webp" alt="SILVER" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store SILVER</h3>
+        <div class="price">12 000 000 so'm</div>
+        <div class="specs">i7-14700K • 32GB RAM • RTX 4070 Ti • 1TB NVMe</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store SILVER"
+                data-price="12000000"
+                data-img="./28548913.jpg.webp"
+                data-cpu="i7-14700K"
+                data-gpu="RTX 4070 Ti"
+                data-ram="32GB DDR5"
+                data-ssd="1TB NVMe">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#39ff14;">RADON</div>
+    <img src="./13653179.jpg.webp" alt="RADON" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store RADON</h3>
+        <div class="price">220 000 000 so'm</div>
+        <div class="specs">Threadripper 7960X • 128GB RAM • Dual RTX 5090</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store RADON"
+                data-price="220000000"
+                data-img="./13653179.jpg.webp"
+                data-cpu="Threadripper 7960X"
+                data-gpu="Dual RTX 5090"
+                data-ram="128GB DDR5">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#00ff88;">LITHIUM</div>
+    <img src="./18357708.jpg.webp" alt="LITHIUM" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store LITHIUM</h3>
+        <div class="price">185 000 000 so'm</div>
+        <div class="specs">Ryzen 7 7800X3D • 64GB RAM • RTX 5080 • 2TB Gen5</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store LITHIUM"
+                data-price="185000000"
+                data-img="./18357708.jpg.webp"
+                data-cpu="Ryzen 7 7800X3D"
+                data-gpu="RTX 5080"
+                data-ram="64GB DDR5"
+                data-ssd="2TB Gen5">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#00b7eb;">COBALT</div>
+    <img src="./63419144.jpg.webp" alt="COBALT" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store COBALT</h3>
+        <div class="price">175 000 000 so'm</div>
+        <div class="specs">i9-13900KS • 64GB RAM • RTX 4080 • Custom Water</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store COBALT"
+                data-price="175000000"
+                data-img="./63419144.jpg.webp"
+                data-cpu="i9-13900KS"
+                data-gpu="RTX 4080"
+                data-ram="64GB DDR5"
+                data-cooling="Custom Water Cooling">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#00ccff;">TITAN</div>
+    <img src="./75150795.jpg.webp" alt="TITAN" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store TITAN</h3>
+        <div class="price">335 000 000 so'm</div>
+        <div class="specs">Threadripper PRO • 192GB RAM • RTX A6000 • 4TB SSD</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store TITAN"
+                data-price="335000000"
+                data-img="./75150795.jpg.webp"
+                data-cpu="Threadripper PRO 7995WX"
+                data-gpu="RTX A6000"
+                data-ram="192GB DDR5"
+                data-ssd="4TB NVMe">
+            Sotib olish
+        </button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="product-title" style="color:#ff9900;">KRYPTON</div>
+    <img src="./75464229.jpg.webp" alt="KRYPTON" class="product-img">
+    <div class="product-info">
+        <h3>N_Comp_Store KRYPTON</h3>
+        <div class="price">275 000 000 so'm</div>
+        <div class="specs">i9-14900KS • 128GB RAM • RTX 5090 • 360mm AIO</div>
+        
+        <button class="buy-btn" onclick="addToCart(this)"
+                data-name="N_Comp_Store KRYPTON"
+                data-price="275000000"
+                data-img="./75464229.jpg.webp"
+                data-cpu="i9-14900KS"
+                data-gpu="RTX 5090"
+                data-ram="128GB DDR5"
+                data-cooling="360mm AIO">
+            Sotib olish
+        </button>
+    </div>
+</div>
+    </div>
+
+    <section class="products">
+        <h2 class="hh22">
+            TOP MAHSULOTLAR</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="./1.MKgosLa4nEEeGV5ERNw_iE0RnkeWER5JXhSeQ5gZlEue.webp" alt="RTX 5090 PC" class="product-img">
+                <div class="product-info"><h3>RTX 5090 PC</h3><div class="price">45,000,000 so'm</div>
+                <div class="specs">i9-14900K • 128GB RAM • RTX 5090</div>
+                <button class="buy-btn" data-name="Gaming Laptop" data-price="28000000">Sotib olish</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="./rog stirx.png" alt="Gaming Laptop" class="product-img">
+                <div class="product-info"><h3>Gaming Laptop</h3><div class="price">28,000,000 so'm</div>
+                <div class="specs">RTX 4080 • 240Hz OLED • 32GB RAM</div>
+                <button class="buy-btn" data-name="Gaming Laptop" data-price="28000000">Sotib olish</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="./i.webp" alt="Mac Book" class="product-img"><div class="product-info"><h3>Mac Book</h3><div class="price">18,000,000 so'm</div><div class="specs">Apple M4 Pro • 32GB RAM • 1TB SSD • 14.2" Liquid Retina XDR</div><button class="buy-btn" data-name="Mac Book" data-price="18000000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./hero-e1706827581510-768x649.png" alt="Purple RGB Gaming PC" class="product-img"><div class="product-info"><h3>Purple RGB PC</h3><div class="price">52,000,000 so'm</div><div class="specs">Ryzen 9 7950X3D • 64GB DDR5 • RTX 5090 • 2TB NVMe</div><button class="buy-btn" data-name="Purple RGB PC" data-price="52000000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./cxHkn1P24p.webp" alt="MSI Suprim Gaming PC" class="product-img"><div class="product-info"><h3>MSI Suprim LapTop</h3><div class="price">48,500,000 so'm</div><div class="specs">i7-14700K • 32GB RAM • RTX 4080 Suprim • Custom Loop</div><button class="buy-btn" data-name="MSI Suprim LapTop" data-price="48500000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./S00e0025359444354a396da6fce0d7f050.jpg_480x480.jpg" alt="Jonsbo MOD-5 Beast PC" class="product-img"><div class="product-info"><h3>Jonsbo Beast PC</h3><div class="price">65,000,000 so'm</div><div class="specs">Threadripper 7960X • 128GB RAM • Dual RTX 5090 • 4TB SSD</div><button class="buy-btn" data-name="Jonsbo Beast PC" data-price="65000000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./c5352251d4da2d7c887502799cbbe90a.jpg" alt="White Lian Li O11 PC" class="product-img"><div class="product-info"><h3>White O11 PC</h3><div class="price">38,000,000 so'm</div><div class="specs">i5-14600K • 32GB RAM • RTX 4070 Ti • 1TB SSD</div><button class="buy-btn" data-name="White O11 PC" data-price="38000000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./Original-New-Mac-Book-PRO-14-14inch-M3-Max-Laptop-in-Stock.webp" alt="MacBook Pro M4" class="product-img"><div class="product-info"><h3>MacBook Pro M3</h3><div class="price">22,500,000 so'm</div><div class="specs">M3 Max • 48GB RAM • 2TB SSD • 16.2" Mini-LED</div><button class="buy-btn" data-name="MacBook Pro M3" data-price="22500000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./e472dbbb-9c6c-11ed-80f2-005056963b6e.jpg" alt="Acer Swift Evo Laptop" class="product-img"><div class="product-info"><h3>Acer Swift Evo</h3><div class="price">14,800,000 so'm</div><div class="specs">Intel Core i7-13700H • 16GB RAM • 1TB SSD • 14" OLED</div><button class="buy-btn" data-name="Acer Swift Evo" data-price="14800000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./1.W_SDTba19x2V7U0duSRx34fv9R095lUcjez1Hw.JOZFv9ZvaqmdEeejGsnXHL_Ix7DJaK3bxGvV_ysyLU4" alt="Razer Blade 16" class="product-img"><div class="product-info"><h3>Razer Blade 16</h3><div class="price">42,000,000 so'm</div><div class="specs">RTX 5090 • Ryzen AI 9 HX • 64GB RAM • 4K Mini-LED</div><button class="buy-btn" data-name="Razer Blade 16" data-price="42000000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./corsair_crystal_series_570x_69_small.jpg" alt="Corsair Windforce PC" class="product-img"><div class="product-info"><h3>Corsair Windforce PC</h3><div class="price">39,900,000 so'm</div><div class="specs">i9-13900KS • 64GB RAM • RTX 4080 • 2TB Gen5 SSD</div><button class="buy-btn" data-name="Corsair Windforce PC" data-price="39900000">Sotib olish</button></div></div>
+
+
+            <div class="product-card">
+                <img src="./th.jpg" alt="Compact ITX Purple PC" class="product-img"><div class="product-info"><h3>Compact ITX PC</h3><div class="price">29,500,000 so'm</div><div class="specs">Ryzen 7 7800X3D • 32GB RAM • RTX 4070 • 1TB NVMe</div><button class="buy-btn" data-name="Compact ITX PC" data-price="29500000">Sotib olish</button></div></div>
+
+        </div>
+    </section>
+
+        <h2 class="section-title">Bizning Komplektlarimiz</h2>
+
+<div class="container">
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ PREMIUM</div>
+    <img src="./38801185.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Premium<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Premium<br>
+      • Мышка: A4Tech A13Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi P27QCA<br>
+      • + RGB подсветка
+    </div>
+    <div class="price">5 384 115 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ MIDDLE</div>
+    <img src="./95392549.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Middle<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Middle<br>
+      • Мышка: A4Tech A139Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi G27<br>
+      • + HDMI кабель
+    </div>
+    <div class="price">3 687 750 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ BASE</div>
+    <img src="./25856072.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Base<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Base<br>
+      • Мышка: A4Tech A139Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi G24<br>
+      • + Базовый DisplayPort
+    </div>
+    <div class="price">3 000 750 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">ИГРОВЫЕ НАУШНИКИ</div>
+    <img src="./19943012.jpg.webp" alt="Premium PC">
+    <div class="title">Игровые наушники<br>Super Harmony Sound</div>
+    <div class="specs">
+      • Цвет: Черный/Белый<br>
+      • Подсветка: RGB<br>
+      • Частота: от 20 Hz до 20 000 Hz<br>
+      • Сопротивление: 32 Ом<br>
+      • Микрофон: Да
+    </div>
+    <div class="price">590 040 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+</div>
+
+<script src="./products.js"></script>
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastText">Mahsulot savatga qo'shildi!</span>
+</div>
+</body>
+</html>

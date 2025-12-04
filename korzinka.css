@@ -1,0 +1,326 @@
+*{
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body{
+    color: white;
+    background: #000;
+}
+
+.head {
+    background: #000;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+}
+
+.logo h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff0000;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li {
+    margin: 0 1rem;
+}
+
+.nav ul li a {
+    color: #ff0000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #ff0000;
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+.nav ul li a:hover::after,
+.nav ul li a.active::after {
+    width: 100%;
+}
+
+.nav ul li a.active {
+    color: #ff6666;
+    text-shadow: 0 0 10px #ff6666;
+}
+
+.hamburger {
+    display: none;
+    color: #ff0000;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.korzinka-container {
+    max-width: 1000px;
+    margin: 140px auto 50px;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff0000;
+    font-size: 2.8rem;
+    text-align: center;
+    text-shadow: 0 0 15px #ff0000;
+    margin-bottom: 30px;
+}
+
+.korzinka-items {
+    background: #111;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    min-height: 200px;
+}
+
+.korzinka-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.korzinka-item:last-child { border-bottom: none; }
+
+.korzinka-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.korzinka-info h3 { color: #ffd700; font-size: 1.3rem; margin-bottom: 5px; }
+.korzinka-info p { color: #aaa; font-size: 0.95rem; }
+
+.korzinka-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #222;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.quantity-btn {
+    background: #ff0000;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.quantity-btn:hover { background: #ff3333; }
+.quantity { min-width: 30px; text-align: center; color: #ffd700; font-weight: bold; }
+
+.remove-btn {
+    background: #ff3333;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.remove-btn:hover { background: #ff6666; }
+
+.korzinka-total {
+    background: #111;
+    padding: 25px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+}
+
+.total-price strong { color: #ffd700; font-size: 2rem; }
+
+.buy-all-btn {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.buy-all-btn:hover {
+    background: #ff3333;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav ul { display: none; }
+    .korzinka-item { flex-direction: column; text-align: center; }
+    .korzinka-actions { justify-content: center; }
+}
+        :root{--y:red;--d:#0f0f0f;--g:#1a1a1a}*{margin:0;padding:0;box-sizing:border-box}
+
+    .cart-btn {
+position: fixed;
+left: 20px;
+bottom: 85px;
+width: 60px;
+height: 60px;
+background: #ff0000;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+z-index: 100;
+}
+
+
+.cart-btn img {
+width: 28px;
+}
+
+
+.cart-count {
+position: absolute;
+top: -5px;
+right: -5px;
+background: #000;
+color: #fff;
+width: 22px;
+height: 22px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+font-weight: bold;
+}
+        .scroll-top{position:fixed;bottom:80px;right:20px;background:var(--y);color:#000;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:24px;cursor:pointer;z-index:999;opacity:0;transition:.4s}
+    .scroll-top.show{opacity:1}
+    /* --- Asosiy navbar --- */
+.nav {
+    position: relative;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 4px;
+    background: red;
+    border-radius: 10px;
+    transition: .4s;
+    box-shadow: 0 0 10px red;
+}
+
+/* X bo‘lish effekt */
+.hamburger.active span:nth-child(1){
+    transform: translateY(13px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2){
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3){
+    transform: translateY(-13px) rotate(-45deg);
+}
+
+
+/* --- MOBIL MENYU --- */
+@media (max-width: 992px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+
+        font-family: 'Orbitron';
+        font-size: 2rem;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: 0.6s ease;
+        z-index: 10000;
+    }
+
+    .nav ul.active {
+        left: 0;
+        opacity: 1;
+        visibility: visible;
+        display: flex;
+    }
+
+    .nav ul li {
+        list-style: none;
+    }
+
+    .nav ul li a {
+        color: red;
+        text-shadow: 0 0 20px red;
+    }
+}

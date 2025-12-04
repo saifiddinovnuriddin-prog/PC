@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zapchastlar | N_Comp_Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .search-filter-container {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-bar {
+      flex: 1;
+      min-width: 280px;
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      background: #1a1a1a;
+      border: 2px solid #ff0000;
+      border-radius: 50px;
+      color: #fff;
+      outline: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .search-bar::placeholder {
+      color: #ff6666;
+      font-style: italic;
+    }
+
+    .search-bar:focus {
+      border-color: #ff3333;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+      transform: scale(1.02);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 12px 24px;
+      background: #1a1a1a;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #ff0000;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+    }
+
+    .product-card {
+      position: relative;
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      height: 420px;
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 0 40px #ff0000;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 60%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .product-card:hover .product-img {
+      height: 40%;
+      filter: brightness(0.6);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .product-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #ff0000;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px #ff0000;
+    }
+
+    .product-details {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      margin-top: 1rem;
+    }
+
+    .product-card:hover .product-details {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0.8rem 0;
+    }
+
+    .specs {
+      font-size: 1rem;
+      color: #ccc;
+      margin: 0.5rem 0;
+      line-height: 1.5;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+
+    .btn-korzinka,
+    .btn-yigish {
+      flex: 1;
+      padding: 14px 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+      z-index: 1;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn-korzinka {
+      background: linear-gradient(45deg, #ff0000, #ff3333);
+      color: #fff;
+    }
+
+    .btn-korzinka::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, #ff3333, #ff6666);
+      border-radius: 50px;
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .btn-korzinka:hover::before {
+      transform: scaleX(1);
+    }
+
+    .btn-korzinka:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+    }
+
+    .btn-yigish {
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      color: #000;
+    }
+
+    .btn-yigish::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, #ff8c00, #ffd700);
+      border-radius: 50px;
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+
+    .btn-yigish:hover::before {
+      transform: scaleX(1);
+    }
+
+    .btn-yigish:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+    }
+
+    .btn-korzinka i, .btn-yigish i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .hit-badge {
+      position: absolute;
+      top: 15px;
+      right: -40px;
+      background: linear-gradient(45deg, #ff0000, #ff4444);
+      color: #fff;
+      padding: 6px 45px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transform: rotate(45deg);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      z-index: 3;
+    }
+
+    @media (max-width: 768px) {
+      .search-filter-container {
+        flex-direction: column;
+      }
+      .search-bar {
+        width: 100%;
+      }
+      .filter-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+      .product-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 992px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+            :root{--y:red;--d:#0f0f0f;--g:#1a1a1a}*{margin:0;padding:0;box-sizing:border-box}
+
+    .cart-btn {
+position: fixed;
+left: 20px;
+bottom: 85px;
+width: 60px;
+height: 60px;
+background: #ff0000;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+z-index: 100;
+}
+
+
+.cart-btn img {
+width: 28px;
+}
+
+
+.cart-count {
+position: absolute;
+top: -5px;
+right: -5px;
+background: #000;
+color: #fff;
+width: 22px;
+height: 22px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+font-weight: bold;
+}
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 255, 0, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    color: #00ff88;
+    padding: 18px 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 255, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    min-width: 300px;
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.toast i {
+    font-size: 2rem;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+@media (max-width: 768px) {
+    .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 100px;
+        min-width: auto;
+    }
+}@media (max-width: 992px) {
+
+    .nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100vw;
+        height: 100vh;
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background: #000;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s ease;
+        z-index: 9999;
+    }
+
+    .nav ul.active {
+        left: 0 !important;
+        opacity: 1;
+        visibility: visible;
+        height: 100vh !important; 
+        display: flex !important; 
+    }
+
+    .nav ul a {
+        color: red !important;
+        font-size: 2rem;
+        text-shadow: 0 0 20px red;
+    }
+}
+
+  </style>
+</head>
+<body>
+<header class="head">
+    <div class="logo">
+        <h2 onclick="window.location.href='admin.html'">N_Comp_Store</h2>
+    </div>
+    <nav class="nav" id="navMenu">
+        <ul id="navList">
+            <li><a href="index.html">Bosh sahifa</a></li>
+            <li><a href="products.html">Mahsulotlar</a></li>
+            <li><a href="zapchast.html">Zapchast</a></li>
+            <li><a href="yigish.html">Yig'ish</a></li>
+            <li><a href="korzinka.html">Korzina</a></li>
+            <li><a href="aloqa.html">Aloqa</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+        <i onclick="window.location.href='zapchast1.html'" class="fa-solid fa-language"></i>
+</header>
+
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const navList = document.getElementById("navList");
+
+    hamburger.onclick = () => {
+        hamburger.classList.toggle("active");
+        navList.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
+    };
+</script>
+
+
+  <div class="cart-btn" onclick="location.href='korzinka.html'">
+    <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Savat">
+    <span class="cart-count" id="cartCount">0</span>
+</div>
+
+<div class="scroll-top" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+const scrollTopBtn = document.querySelector('.scroll-top');
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 200) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        scrollTopBtn.classList.remove('show');
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const cartCountElem = document.getElementById('cartCount');
+    if(cartCountElem) cartCountElem.textContent = count;
+}
+
+updateCartCount();
+</script>
+
+  <section class="hero" style="height: 70vh; margin-top: 80px;">
+    <div class="hero-content">
+      <h1 class="glitch" data-text="ZAPCHASTLAR">ZAPCHASTLAR</h1>
+      <p class="tagline">40+ qism – sizning ideal kompyuteringiz uchun!</p>
+      <a href="#zapchastlar" class="cta-btn">HOZIR TANLANG</a>
+    </div>
+    <div class="particles"></div>
+  </section>
+
+  <section class="products" id="zapchastlar">
+    <h2 class="section-title">BARCHA ZAPCHASTLAR</h2>
+
+    <div class="search-filter-container">
+      <input type="text" class="search-bar" placeholder="RTX, i9, DDR5, ASUS..." onkeyup="searchParts()">
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterParts('all')">Barchasi</button>
+        <button class="filter-btn" onclick="filterParts('gpu')">Videokarta</button>
+        <button class="filter-btn" onclick="filterParts('cpu')">Protsessor</button>
+        <button class="filter-btn" onclick="filterParts('mb')">Materinskiy plata</button>
+        <button class="filter-btn" onclick="filterParts('ram')">RAM</button>
+        <button class="filter-btn" onclick="filterParts('ssd')">SSD</button>
+        <button class="filter-btn" onclick="filterParts('psu')">Blok pitaniya</button>
+        <button class="filter-btn" onclick="filterParts('case')">Korpus</button>
+        <button class="filter-btn" onclick="filterParts('cooler')">Sovutish</button>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <div class="product-card category gpu">
+        <div class="hit-badge">YANGI</div>
+        <img src="nvidia-geforce-rtx-4090-reviews.jpg" alt="RTX 4090" class="product-img">
+        <div class="product-info">
+          <h3>RTX 4090 Ti</h3>
+          <div class="product-details">
+            <div class="price">32,500,000 so‘m</div>
+            <div class="specs">24GB GDDR6X • 16384 CUDA • 600W</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('RTX 4090 Ti',32500000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('RTX 4090 Ti','gpu')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category gpu">
+        <img src="640_blogs_1742310912266946_0.webp" alt="RTX 4080" class="product-img">
+        <div class="product-info">
+          <h3>RTX 4080 Suprim</h3>
+          <div class="product-details">
+            <div class="price">19,800,000 so‘m</div>
+            <div class="specs">16GB • DLSS 3 • 320W</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('RTX 4080 Suprim',19800000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('RTX 4080 Suprim','gpu')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category gpu">
+        <div class="hit-badge">CHEGLAV</div>
+        <img src="6610990510.jpg" alt="RX 7900" class="product-img">
+        <div class="product-info">
+          <h3>RX 7900 XTX</h3>
+          <div class="product-details">
+            <div class="price">17,500,000 so‘m</div>
+            <div class="specs">24GB • RDNA 3 • 355W</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('RX 7900 XTX',17500000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('RX 7900 XTX','gpu')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category cpu">
+        <img src="intel-core-i7-14700-7756672254.jpg" alt="i9" class="product-img">
+        <div class="product-info">
+          <h3>Intel i9-14900K</h3>
+          <div class="product-details">
+            <div class="price">9,200,000 so‘m</div>
+            <div class="specs">24 yadro • 6.0 GHz • 125W</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('i9-14900K',9200000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('i9-14900K','cpu')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category cpu">
+        <img src="1.WNnhC7aA9DD3q1Yx3SZ18f-q9jRTvPAwU9uVNFMI9ZJUqPAq96tWMVc.ityevPZJBOShKi0bZl1CZxmokF2DqC1E_UJepx-ob5g" alt="Ryzen 9" class="product-img">
+        <div class="product-info">
+          <h3>AMD Ryzen 9 7950X3D</h3>
+          <div class="product-details">
+            <div class="price">10,800,000 so‘m</div>
+            <div class="specs">16 yadro • 5.7 GHz • 3D V-Cache</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('Ryzen 9 7950X3D',10800000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('Ryzen 9 7950X3D','cpu')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category mb">
+        <div class="hit-badge">TOP</div>
+        <img src="ROG-MAXIMUS-Z790-DARK-HERO-430x430.webp" alt="Z790" class="product-img">
+        <div class="product-info">
+          <h3>ASUS ROG Z790 Maximus</h3>
+          <div class="product-details">
+            <div class="price">8,500,000 so‘m</div>
+            <div class="specs">LGA 1700 • DDR5 • WiFi 7</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('Z790 Maximus',8500000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('Z790 Maximus','mb')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category mb">
+        <img src="msimpgx670ecarbonwifiam5ddr54xm2usb32hdmidp25glanamdwifi6ergbatx-3.jpg" alt="X670E" class="product-img">
+        <div class="product-info">
+          <h3>MSI X670E Carbon</h3>
+          <div class="product-details">
+            <div class="price">7,200,000 so‘m</div>
+            <div class="specs">AM5 • DDR5 • PCIe 5.0</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('X670E Carbon',7200000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('X670E Carbon','mb')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card category mb">
+        <img src="7936848063.jpg" alt="B650" class="product-img">
+        <div class="product-info">
+          <h3>Gigabyte B650 AORUS</h3>
+          <div class="product-details">
+            <div class="price">4,300,000 so‘m</div>
+            <div class="specs">AM5 • DDR5 • M.2 x3</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('B650 AORUS',4300000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('B650 AORUS','mb')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="product-card category ram">
+    <img src="1.webp" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Corsair 64GB DDR5 6000MHz</h3>
+    <div class="product-details">
+      <div class="price">3,800,000 so‘m</div>
+      <div class="specs">2x32GB • CL36 • RGB</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Corsair 64GB DDR5',3800000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Corsair 64GB DDR5','ram')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ram">
+    <img src="c52da1d07e578cf007c023dc51c4fe21a5ec4a23.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Kingston 32GB DDR4 3600MHz</h3>
+    <div class="product-details">
+      <div class="price">1,500,000 so‘m</div>
+      <div class="specs">2x16GB • CL18</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Kingston 32GB DDR4',1500000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Kingston 32GB DDR4','ram')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ram">
+        <img src="1200.png" alt="" class="product-img">
+  <div class="hit-badge">CHEGLAV</div>
+  <div class="product-info">
+    <h3>G.Skill 128GB DDR5 7200MHz</h3>
+    <div class="product-details">
+      <div class="price">7,200,000 so‘m</div>
+      <div class="specs">4x32GB • CL34 • RGB</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('G.Skill 128GB',7200000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('G.Skill 128GB','ram')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ram">
+        <img src="ozuteamgroupt-createexpert32gbttced432g3200hc16fdc012x16gbddr43200mhzcl1616-20-20-40135v-1902327.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>TeamGroup 16GB DDR4 3200MHz</h3>
+    <div class="product-details">
+      <div class="price">850,000 so‘m</div>
+      <div class="specs">2x8GB • CL16</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('TeamGroup 16GB',850000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('TeamGroup 16GB','ram')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ssd">
+    <img src="1694020399_samsung-990-pro-4tb.jpg" alt="" class="product-img">
+  <div class="hit-badge">TEZ</div>
+  <div class="product-info">
+    <h3>Samsung 990 PRO 4TB</h3>
+    <div class="product-details">
+      <div class="price">4,900,000 so‘m</div>
+      <div class="specs">PCIe 5.0 • 14000 MB/s</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Samsung 990 PRO 4TB',4900000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Samsung 990 PRO 4TB','ssd')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ssd">
+    <img src="WD_SN850X_DSC7316.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>WD Black SN850X 2TB</h3>
+    <div class="product-details">
+      <div class="price">2,700,000 so‘m</div>
+      <div class="specs">PCIe 4.0 • 7000 MB/s</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('WD SN850X 2TB',2700000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('WD SN850X 2TB','ssd')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ssd">
+    <img src="71kSomUqMHL._AC_SX466_.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Seagate FireCuda 1TB</h3>
+    <div class="product-details">
+      <div class="price">1,800,000 so‘m</div>
+      <div class="specs">PCIe 4.0 • 7300 MB/s</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Seagate 1TB',1800000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Seagate 1TB','ssd')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ssd">
+    <img src="s-l400.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Kingston NV2 500GB</h3>
+    <div class="product-details">
+      <div class="price">750,000 so‘m</div>
+      <div class="specs">PCIe 4.0 • 3500 MB/s</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Kingston NV2 500GB',750000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Kingston NV2 500GB','ssd')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category psu">
+    <img src="blok_pitaniya_corsair_hx1500i_1500w_80_platinum_fm_atx_24_pin_2x44pin_4x62pin_cp_9020261_eu_276390_7.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Corsair HX1500i</h3>
+    <div class="product-details">
+      <div class="price">4,200,000 so‘m</div>
+      <div class="specs">1500W • 80+ Platinum</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Corsair HX1500i',4200000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Corsair HX1500i','psu')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category psu">
+    <img src="EVGA-Super-NOVA-1000-G-80-Plus-Gold-1000W-Fully-Modular-FDB-Fan-Includes-Power-ON.jpg_350x350.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>EVGA SuperNOVA 1000W</h3>
+    <div class="product-details">
+      <div class="price">3,100,000 so‘m</div>
+      <div class="specs">1000W • 80+ Gold</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('EVGA 1000W',3100000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('EVGA 1000W','psu')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category psu">
+    <img src="be-quiet-pure-power-12-750w-trofodotiko-ypologisth-atx-80-plus-gold.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Be Quiet! 850W</h3>
+    <div class="product-details">
+      <div class="price">2,400,000 so‘m</div>
+      <div class="specs">850W • 80+ Platinum</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Be Quiet! 850W',2400000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Be Quiet! 850W','psu')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category psu">
+    <img src="2022-12-12-14-47-05-745023-6d5685f4eebfc66f1830b4514f4aa5a4.webp" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Cooler Master 650W</h3>
+    <div class="product-details">
+      <div class="price">1,300,000 so‘m</div>
+      <div class="specs">650W • 80+ Bronze</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Cooler Master 650W',1300000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Cooler Master 650W','psu')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category case">
+    <img src="./shopping.webp" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Lian Li O11D EVO</h3>
+    <div class="product-details">
+      <div class="price">2,800,000 so‘m</div>
+      <div class="specs">RGB • 3x Fan • Tempered Glass</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Lian Li O11D',2800000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Lian Li O11D','case')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category case">
+    <img src="./download.jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>NZXT H9 Flow</h3>
+    <div class="product-details">
+      <div class="price">2,500,000 so‘m</div>
+      <div class="specs">Mid-Tower • Mesh Panel</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('NZXT H9',2500000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('NZXT H9','case')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category case">
+    <img src="./download (1).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Corsair 5000D Airflow</h3>
+    <div class="product-details">
+      <div class="price">2,100,000 so‘m</div>
+      <div class="specs">2x Fan • White</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Corsair 5000D',2100000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Corsair 5000D','case')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category case">
+    <img src="./download (2).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Fractal Design Meshify 2</h3>
+    <div class="product-details">
+      <div class="price">1,900,000 so‘m</div>
+      <div class="specs">Mesh • Silent</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Fractal Meshify',1900000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Fractal Meshify','case')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category cooler">
+    <img src="download (3).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>NZXT Kraken X73</h3>
+    <div class="product-details">
+      <div class="price">3,100,000 so‘m</div>
+      <div class="specs">360mm • RGB • AIO</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('NZXT Kraken X73',3100000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('NZXT Kraken X73','cooler')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category cooler">
+    <img src="download (4).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Arctic Liquid Freezer II</h3>
+    <div class="product-details">
+      <div class="price">2,300,000 so‘m</div>
+      <div class="specs">280mm • PWM</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Arctic Freezer',2300000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Arctic Freezer','cooler')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category cooler">
+    <img src="download (5).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Noctua NH-D15</h3>
+    <div class="product-details">
+      <div class="price">1,800,000 so‘m</div>
+      <div class="specs">Air • Dual Tower</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Noctua NH-D15',1800000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Noctua NH-D15','cooler')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category cooler">
+<img src="download (6).jpg" alt="" class="product-img">
+<div class="product-card category cooler">
+  <div class="product-info">
+    <h3>Deepcool AK620</h3>
+    <div class="product-details">
+      <div class="price">1,200,000 so‘m</div>
+      <div class="specs">Air • 6 Heatpipes</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Deepcool AK620',1200000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Deepcool AK620','cooler')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ram">
+    <img src="download (7).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Patriot Viper 32GB DDR5</h3>
+    <div class="product-details">
+      <div class="price">2,600,000 so‘m</div>
+      <div class="specs">2x16GB • 6400MHz</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Patriot 32GB',2600000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Patriot 32GB','ram')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card category ssd">
+    <img src="download (8).jpg" alt="" class="product-img">
+  <div class="product-info">
+    <h3>Crucial T700 2TB</h3>
+    <div class="product-details">
+      <div class="price">3,500,000 so‘m</div>
+      <div class="specs">PCIe 5.0 • 12400 MB/s</div>
+      <div class="btn-group">
+        <button class="btn-korzinka" onclick="addToKorzinka('Crucial T700 2TB',3500000,this)">Korzinkaga</button>
+        <button class="btn-yigish" onclick="goToYigish('Crucial T700 2TB','ssd')">Yig‘ish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="product-card category ram">
+        <img src="download (9).jpg" alt="DDR5" class="product-img">
+        <div class="product-info">
+          <h3>Corsair 64GB DDR5</h3>
+          <div class="product-details">
+            <div class="price">3,800,000 so‘m</div>
+            <div class="specs">2x32GB • 6000MHz • RGB</div>
+            <div class="btn-group">
+              <button class="btn-korzinka" onclick="addToKorzinka('Corsair 64GB',3800000,this)">Korzinkaga</button>
+              <button class="btn-yigish" onclick="goToYigish('Corsair 64GB','ram')">Yig‘ish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  function addToKorzinka(name, price, btn) {
+    let k = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    k.push({ 
+      name, 
+      price, 
+      img: btn.closest('.product-card').querySelector('img').src 
+    });
+    localStorage.setItem('korzinka', JSON.stringify(k));
+    alert(`${name} korzinkaga qo‘shildi!`);
+  }
+
+  function goToYigish(name, type) {
+    const card = event.target.closest('.product-card');
+    const img = card.querySelector('.product-img').src;
+    const price = card.querySelector('.price').textContent;
+
+    const fullName = name + " – " + price;
+
+    location.href = `yigish.html?name=${encodeURIComponent(fullName)}&type=${type}&img=${encodeURIComponent(img)}`;
+  }
+
+  function filterParts(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.classList.contains(cat)) ? 'block' : 'none';
+    });
+  }
+  function searchParts() {
+    const q = document.querySelector('.search-bar').value.toLowerCase();
+    document.querySelectorAll('.product-card').forEach(card => {
+      const name = card.querySelector('h3').textContent.toLowerCase();
+      card.style.display = name.includes(q) ? 'block' : 'none';
+    });
+  }
+  function showToast(message = "Mahsulot savatga qo'shildi!") {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastText').textContent = message;
+    toast.classList.remove('show');
+    setTimeout(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+    }, 100);
+}
+
+window.addToKorzinka = function(name, price, img = '') {
+    let cart = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name, price: Number(price), img, quantity: 1 });
+    }
+    localStorage.setItem('korzinka', JSON.stringify(cart));
+    updateCartCount();
+    showToast(`“${name}” savatga qo'shildi!`);
+};
+</script>
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastText">Mahsulot savatga qo'shildi!</span>
+</div>
+</body>
+</html>

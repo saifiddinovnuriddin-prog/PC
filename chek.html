@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyurtma | N_Comp_Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --red: #ff0000;
+            --dark: #0f0f0f;
+            --darker: #000;
+            --light: #fff;
+            --gray: #222;
+            --green: #00ff41;
+        }
+
+        * {
+            list-style: none;
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000 0%, #111 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .head {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .logo h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--red);
+            font-size: 2.2rem;
+            cursor: pointer;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            transition: all 0.4s;
+        }
+
+        .logo h2:hover {
+            text-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000;
+            transform: scale(1.05);
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav ul li a {
+            color: var(--red);
+            font-weight: 600;
+            position: relative;
+            transition: all 0.4s;
+            padding: 8px 0;
+        }
+
+        .nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--red);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.4s;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--red);
+        }
+
+        .nav ul li a:hover::after,
+        .nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav ul li a:hover {
+            color: #ff4444;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        .checkout-container {
+            margin-top: 120px;
+            max-width: 520px;
+            width: 95%;
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+            margin-bottom: 40px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.6rem;
+            margin-bottom: 30px;
+            color: var(--red);
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: var(--dark);
+            padding: 0 10px;
+            font-size: 0.9rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            padding: 18px;
+            background: rgba(40, 40, 40, 0.8);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            outline: none;
+        }
+
+        .input-box input:focus,
+        .input-box select:focus {
+            border: 2px solid var(--red);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            background: rgba(50, 50, 50, 0.9);
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #ff0000, #ff4444);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.7s;
+        }
+
+        .buy-btn:hover::before {
+            left: 100%;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(45deg, #ff3333, #ff6666);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.7);
+        }
+
+            #toast {
+            visibility: hidden;
+            min-width: 300px;
+            background: linear-gradient(45deg, #00ff41, #00cc33);
+            color: black;
+            text-align: center;
+            border-radius: 15px;
+            padding: 18px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            bottom: 50px;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4);
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 80px;
+            transform: translateX(-50%) translateY(-20px);
+        }
+
+        #toast i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container { padding: 30px 20px; }
+            h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="head">
+        <div class="logo">
+            <h2 onclick="window.location.href='index.html'">N_Comp_Store</h2>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Bosh sahifa</a></li>
+                <li><a href="products.html">Mahsulotlar</a></li>
+                <li><a href="zapchast.html">Zapchast</a></li>
+                <li><a href="yigish.html">Yig'ish</a></li>
+                <li><a href="korzinka.html">Korzina</a></li>
+                <li><a href="aloqa.html">Aloqa</a></li>
+            </ul>
+        </nav>
+            <i onclick="window.location.href='chek1.html'" class="fa-solid fa-language"></i>
+    </header>
+
+    <div class="checkout-container">
+        <h2>Buyurtma rasmiylashtirish</h2>
+
+        <div class="input-box">
+            <label>Ism Familya</label>
+            <input type="text" placeholder="Ismingizni kiriting" id="name">
+        </div>
+
+        <div class="input-box">
+            <label>Telefon raqam</label>
+            <input type="text" placeholder="+998 90 123 45 67" id="phone">
+        </div>
+
+        <div class="input-box">
+            <label>Manzil</label>
+            <input type="text" placeholder="Yetkazib berish manzili" id="address">
+        </div>
+
+        <div class="input-box">
+            <label>To‘lov turi</label>
+            <select id="payment">
+                <option>Naqd pul</option>
+                <option>Karta orqali</option>
+                <option>Click / Payme / Uzum</option>
+            </select>
+        </div>
+
+        <div class="input-box">
+            <label>Jami to‘lov (so‘mda)</label>
+            <input type="number" placeholder="1500000" id="total" readonly>
+        </div>
+
+        <button class="buy-btn" onclick="finishOrder()">
+            Buyurtmani yakunlash
+        </button>
+    </div>
+
+    <div id="toast"><i class="fas fa-check"></i> Buyurtma muvaffaqiyatli qabul qilindi!</div>
+
+    <script>
+        window.onload = function() {
+            const cart = JSON.parse(localStorage.getItem("korzinka") || "[]");
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById("total").value = total;
+        }
+
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById("toast");
+            toast.innerHTML = message;
+            toast.style.background = isSuccess 
+                ? "linear-gradient(45deg, #00ff41, #00cc33)" 
+                : "linear-gradient(45deg, #ff3333, #cc0000)";
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3500);
+        }
+
+        function finishOrder() {
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const total = document.getElementById("total").value;
+
+            if (!name || !phone || !address || total == 0) {
+                showToast("Iltimos, barcha maydonlarni to‘ldiring!", false);
+                return;
+            }
+
+            let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+            orders.push({
+                name,
+                phone,
+                address,
+                total,
+                date: new Date().toLocaleString('uz-UZ'),
+                status: "Yangi"
+            });
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            localStorage.removeItem("korzinka");
+
+            showToast("Buyurtma muvaffaqiyatli rasmiylashtirildi!");
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
