@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Продукты | N_Comp_Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="./styles1.css">
+</head>
+<body>
+<header class="head">
+<div class="logo">
+<h2 onclick="window.location.href='admin.html'">N_Comp_Store</h2>
+</div>
+<nav class="nav" id="navMenu">
+<ul id="navList">
+<li><a href="index.html">Главная</a></li>
+<li><a href="products.html">Товары</a></li>
+<li><a href="zapchast.html">Запчасть</a></li>
+<li><a href="collection.html">Коллекция</a></li>
+<li><a href="cart.html">Корзина</a></li>
+<li><a href="contact.html">Контакты</a></li>
+</ul>
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</nav>
+<i onclick="window.location.href='products1.html'" class="fa-solid fa-language"></i>
+
+</header>
+
+<div class="cart-btn" onclick="location.href='cart.html'">
+<img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Корзина">
+<span class="cart-count" id="cartCount">0</span>
+</div>
+
+<div class="scroll-top" onclick="scrollToTop()">
+<i class="fa-arrow-up"></i>
+</div>
+
+<section class="hero">
+<div class="hero-content">
+<h1 class="glitch barch">ВСЕ ТОВАРЫ</h1>
+</div>
+<div class="particles" id="particles"></div>
+</section>
+
+<div class="section-compshop">
+<h2>N_Comp_Store PREMIUM</h2>
+</div>
+
+<div class="product-grid">
+<div class="product-card">
+<div class="product-title" style="color:#ff3333;">CARBON</div>
+<img src="./67058610.jpg.webp" alt="CARBON" class="product-img">
+<div class="product-info">
+<h3>N_Comp_Store CARBON</h3>
+<div class="price">380 000 000 сумов</div>
+<div class="specs">Два процессора Xeon • 256 ГБ ECC • 4 видеокарты RTX 5090 • RAID 8 ТБ</div>
+
+<button class="buy-btn" onclick="addToCart(this)"
+data-name="N_Comp_Store CARBON"
+data-price="380000000"
+data-img="./67058610.jpg.webp"
+data-cpu="Dual Xeon Platinum"
+data-gpu="4×RTX 5090"
+data-ram="256 ГБ ECC DDR5"
+data-ssd="8 ТБ RAID"
+data-cooling="Custom Enterprise Cooling">
+Купить
+</button>
+</div>
+</div>
+
+<div class="product-card">
+<div class="product-title" style="color:#ffd700;">GOLD</div>
+<img src="./64607477.jpg.webp" alt="GOLD" class="product-img">
+<div class="product-info">
+<h3>N_Comp_Store GOLD</h3>
+<div class="price">15 000 000 сумов</div>
+<div class="specs">i9-14900K • 128 ГБ ОЗУ • RTX 5090 • Пользовательский контур</div>
+
+<button class="buy-btn" onclick="addToCart(this)"
+data-name="N_Comp_Store GOLD"
+data-price="15000000"
+data-img="./64607477.jpg.webp"
+data-cpu="i9-14900K"
+data-gpu="RTX 5090"
+data-ram="128 ГБ DDR5"
+data-cooling="Пользовательский контур"
+data-ssd="2 ТБ NVMe">
+Купить
+</button>
+<button class="buy-btn1"><a href="./kuproq.html">Подробнее</a></button>
+</div>
+</div>
+
+<div class="product-card">
+<div class="product-title" style="color:#ff00ff;">HELIUM PLUS</div>
+<img src="./1.SI50xra45GdCbyZiaM8Ds19n5mHKZ2ZvAmlmZcRv7G3C.1Ij_pqH3hrqgavNFMQJ_DWtjBzpRMz88FZX9J9Ym4aQ" alt="HELIUM PLUS" class="product-img">
+<div class="product-info">
+<h3>N_Comp_Store HELIUM PLUS</h3>
+<div class="price">14 000 000 сумов</div>
+<div class="specs">Ryzen 9 7950X3D • 64 ГБ DDR5 • RTX 5080 • AIO 360 мм</div>
+
+<button class="buy-btn" onclick="addToCart(this)"
+data-name="N_Comp_Store HELIUM PLUS"
+data-price="14000000"
+data-img="./1.SI50xra45GdCbyZiaM8Ds19n5mHKZ2ZvAmlmZcRv7G3C.1Ij_pqH3hrqgavNFMQJ_DWtjBzpRMz88FZX9J9Ym4aQ"
+data-cpu="Ryzen 9 7950X3D"
+data-gpu="RTX 5080"
+data-ram="64 ГБ DDR5"
+data-cooling="AIO 360 мм">
+Купить
+</button>
+</div>
+</div>
+
+<div class="product-card">
+<div class="hit-badge">ХИТ ПРОДАЖ</div>
+<div class="product-title" style="color:#00ffff;">СЕРЕБРЯНЫЙ</div>
+<img src="./28548913.jpg.webp" alt="СЕРЕБРЯНЫЙ" class="product-img">
+<div class="product-info">
+<h3>N_Comp_Store СЕРЕБРЯНЫЙ</h3>
+<div class="price">12 000 00
+    

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sizning PC | N_Comp_Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { 
+      background:#000; 
+      color:#fff; 
+      font-family:'Roboto',sans-serif; 
+      min-height:100vh; 
+    }
+    .head { position:fixed; top:0; left:0; width:100%; background:#000; padding:1.5rem 5%; display:flex; justify-content:space-between; align-items:center; z-index:1000; box-shadow:0 10px 30px rgba(255,0,0,0.4); }
+    .logo h2 { font-family:'Orbitron'; color:#ff0000; text-shadow:0 0 20px #ff0000; font-size:2.3rem; }
+    .nav ul { display:flex; list-style:none; }
+    .nav ul li { margin:0 1.5rem; }
+    .nav ul li a { color:#ff0000; text-decoration:none; font-weight:bold; position:relative; }
+    .nav ul li a::after { content:''; position:absolute; width:0; height:3px; background:#ff0000; bottom:-8px; left:0; transition:0.4s; }
+    .nav ul li a:hover::after { width:100%; }
+    .hamburger { display:none; color:#ff0000; font-size:2rem; cursor:pointer; }
+    .title {
+      text-align:center;
+      margin:140px 0 80px;
+      font-family:'Orbitron';
+      font-size:5.5rem;
+      color:#ff0000;
+      text-shadow:0 0 50px #ff0000;
+      animation:glow 2s infinite alternate;
+    }
+    @keyframes glow { from { text-shadow:0 0 30px #ff0000; } to { text-shadow:0 0 90px #ff0000; } }
+
+    .pc-section {
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 20px;
+      display:flex;
+      gap:60px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .pc-image-box { flex:1; min-width:300px; max-width:800px; }
+    .pc-image { width:100%; border-radius:35px; border:6px solid #ff0000; box-shadow:0 0 100px rgba(255,0,0,0.9); transition:0.5s; }
+    .pc-image:hover { transform:scale(1.03); box-shadow:0 0 140px #ff0000; }
+
+    .specs-box {
+      flex:1;
+      min-width:350px;
+      background:rgba(255,0,0,0.1);
+      padding:40px;
+      border-radius:30px;
+      border:3px solid #ff0000;
+      backdrop-filter:blur(10px);
+      box-shadow:0 0 60px rgba(255,0,0,0.6);
+    }
+
+    .spec { margin-bottom:28px; padding-bottom:20px; border-bottom:1px dashed rgba(255,0,0,0.3); }
+    .spec:last-child { border:none; margin-bottom:0; padding-bottom:0; }
+    .label { color:#ff6666; font-size:1.2rem; margin-bottom:8px; font-weight:bold; }
+    .value { font-family:'Orbitron'; font-size:1.8rem; color:#00ff88; text-shadow:0 0 15px #00ff88; }
+
+    .total-price {
+      margin-top:50px;
+      font-family:'Orbitron';
+      font-size:4rem;
+      text-align:center;
+      background:linear-gradient(90deg,#ff0000,#00ff88);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .actions { text-align:center; margin:70px 0; }
+    .btn { padding:22px 80px; margin:15px; border:none; border-radius:50px; font-family:'Orbitron'; font-size:1.9rem; cursor:pointer; transition:0.4s; box-shadow:0 0 50px; }
+    .btn-buy { background:#ff0000; color:#fff; }
+    .btn-buy:hover { transform:scale(1.18); box-shadow:0 0 90px #ff0000; }
+    .btn-edit { background:#222; color:#fff; }
+    .btn-edit:hover { background:#ff0000; }
+
+    @media (max-width:992px) {
+      .pc-section { flex-direction:column; align-items:center; }
+      .title { font-size:3.8rem; }
+      .hamburger { display:block; }
+      .nav ul { position:absolute; top:100%; left:0; width:100%; background:#000; flex-direction:column; padding:20px 0; display:none; }
+      .nav ul.active { display:flex; }
+      .nav ul li { margin:15px 0; text-align:center; }
+      .btn { display:block; width:90%; margin:20px auto; }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(0, 255, 0, 0.15);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 255, 0, 0.4);
+      color: #00ff88;
+      padding: 18px 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 255, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      min-width: 300px;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast i { font-size: 2rem; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.25);} }
+    @media (max-width:768px){ .toast{ left:20px; right:20px; bottom:100px; min-width:auto; } }
+
+        .scroll-top{position:fixed;bottom:80px;right:20px;background:var(--y);color:#000;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:24px;cursor:pointer;z-index:999;opacity:0;transition:.4s}
+    .scroll-top.show{opacity:1}
+
+    @media(max-width:1024px){
+      .hero{flex-direction:column;text-align:center;padding-top:120px}
+      .images{width:80%;margin-bottom:40px}
+      .text{max-width:100%}
+      .text h1{font-size:48px}
+    }
+    @media(max-width:768px){
+      .text h1{font-size:38px}
+      .text p{font-size:20px}
+      .advantages{gap:30px;padding:80px 5%}
+      .card{width:100%;max-width:340px}
+    }
+        :root{--y:red;--d:#0f0f0f;--g:#1a1a1a}*{margin:0;padding:0;box-sizing:border-box}
+
+    .cart-btn {
+position: fixed;
+left: 20px;
+bottom: 85px;
+width: 60px;
+height: 60px;
+background: #ff0000;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+z-index: 100;
+}
+
+
+.cart-btn img {
+width: 28px;
+}
+
+
+.cart-count {
+position: absolute;
+top: -5px;
+right: -5px;
+background: #000;
+color: #fff;
+width: 22px;
+height: 22px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+font-weight: bold;
+}
+  </style>
+</head>
+<body>
+
+<header class="head">
+        <h2 onclick="window.location.href='admin.html'">N_Comp_Store</h2>
+  <nav class="nav">
+    <ul>
+      <li><a href="index.html">Bosh sahifa</a></li>
+      <li><a href="products.html">Mahsulotlar</a></li>
+      <li><a href="zapchast.html">Zapchast</a></li>
+      <li><a href="yigish.html">Yig'ish</a></li>
+      <li><a href="korzinka.html">Korzina</a></li>
+      <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+    <div class="hamburger" onclick="document.querySelector('.nav ul').classList.toggle('active')">Menu</div>
+  </nav>
+      <i onclick="window.location.href='pc1.html'" class="fa-solid fa-language"></i>
+
+</header>
+
+<div class="cart-btn" onclick="location.href='korzinka.html'">
+    <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Savat">
+    <span class="cart-count" id="cartCount">0</span>
+</div>
+
+<div class="scroll-top" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+const scrollTopBtn = document.querySelector('.scroll-top');
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 200) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        scrollTopBtn.classList.remove('show');
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const cartCountElem = document.getElementById('cartCount');
+    if(cartCountElem) cartCountElem.textContent = count;
+}
+
+updateCartCount();
+</script>
+
+<h1 class="title">SIZNING ORZUDAGI PC</h1>
+
+<div class="pc-section" id="pcContent">
+</div>
+
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastText">Mahsulot savatga qo'shildi!</span>
+</div>
+
+<script>
+  const finalPC = JSON.parse(localStorage.getItem("finalPC") || "[]");
+
+  if (finalPC.length === 0) {
+    document.getElementById("pcContent").innerHTML = `
+      <div style="text-align:center;padding:150px;font-size:2.2rem;color:#666;">
+        <h2>Сиз ҳали PC йиғмадингиз</h2>
+        <a href="yigish.html" style="display:inline-block;margin-top:40px;padding:22px 80px;background:#ff0000;color:#fff;border-radius:50px;text-decoration:none;font-family:'Orbitron';font-size:1.8rem;">
+          ҲОЗИР ЙИҒИШ
+        </a>
+      </div>`;
+  } else {
+    let total = 0;
+    let pcImage = "./64607477.jpg.webp";
+
+    const casePart = finalPC.find(p => p.type === "case");
+    if (casePart && casePart.img) pcImage = casePart.img;
+
+    let specsHTML = "";
+    finalPC.forEach(part => {
+      const price = parseInt(part.name.replace(/[^\d]/g, "")) || 0;
+      total += price;
+
+      const labels = {
+        cpu: "ПРОЦЕССОР", gpu: "ВИДЕОКАРТА", ram: "ОПЕРАТИВКА", ssd: "SSD",
+        mb: "МАТЕРИНСКАЯ ПЛАТА", psu: "БЛОК ПИТАНИЯ", case: "КОРПУС", cooler: "СОВУТИШ"
+      };
+
+      specsHTML += `
+        <div class="spec">
+          <div class="label">${labels[part.type] || part.type.toUpperCase()}</div>
+          <div class="value">${part.name}</div>
+        </div>`;
+    });
+
+    document.getElementById("pcContent").innerHTML = `
+      <div class="pc-image-box">
+        <img src="${pcImage}" alt="Sizning PC" class="pc-image" onerror="this.src='./64607477.jpg.webp'">
+      </div>
+
+      <div class="specs-box">
+        ${specsHTML}
+        <div class="total-price">${total.toLocaleString()} so'm</div>
+        
+        <div class="actions">
+          <button class="btn btn-buy" onclick="addToCart()">SAVATGA QO'SHISH</button>
+          <button class="btn btn-edit" onclick="location.href='yigish.html'">O'ZGARTIRISH</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function showToast(message = "Mahsulot savatga qo'shildi!") {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastText').textContent = message;
+    toast.classList.remove('show');
+    setTimeout(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+    }, 100);
+  }
+
+  window.addToKorzinka = function(name, price, img = '') {
+    let cart = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name, price: Number(price), img, quantity: 1 });
+    }
+    localStorage.setItem('korzinka', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('korzinka') || '[]');
+    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const cartCountElem = document.getElementById('cartCount');
+    if (cartCountElem) cartCountElem.textContent = count;
+  }
+
+  updateCartCount();
+
+  function addToCart() {
+    const finalPC = JSON.parse(localStorage.getItem("finalPC") || "[]");
+
+    if (finalPC.length === 0) {
+        showToast("PC hali yig'ilmagan!");
+        return;
+    }
+
+    const casePart = finalPC.find(part => part.type === "case");
+    if (!casePart) {
+        showToast("PC to'liq emas, korpus topilmadi!");
+        return;
+    }
+
+    let pcName = "Sizning Orzudagi PC";
+    let totalPrice = 0;
+    finalPC.forEach(part => {
+        const price = parseInt(part.name.replace(/[^\d]/g, "")) || 0;
+        totalPrice += price;
+    });
+
+    window.addToKorzinka(pcName, totalPrice, casePart.img || '');
+    showToast("Sizning PC savatga qo'shildi!");
+  }
+</script>
+</body>
+</html>

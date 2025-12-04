@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N_Comp_Store</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="head">
+<div class="logo">
+<h2 onclick="window.location.href='admin.html'">N_Comp_Store</h2>
+</div>
+<nav class="nav" id="navMenu">
+<ul id="navList">
+<li><a href="index.html">Главная</a></li>
+<li><a href="products.html">Товары</a></li>
+<li><a href="zapchast.html">Запчасть</a></li>
+<li><a href="collection.html">Коллекция</a></li>
+<li><a href="cart.html">Корзина</a></li>
+<li><a href="contact.html">Контакты</a></li>
+</ul>
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</nav>
+<i onclick="window.location.href='index1.html'" class="fa-solid fa-language"></i>
+</header>
+
+<div class="cart-btn" onclick="location.href='cart.html'">
+<img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Корзина">
+<span class="cart-count" id="cartCount">0</span>
+</div>
+
+<div class="scroll-top" onclick="scrollToTop()">
+<i class="fa-arrow-up"></i>
+</div>
+
+<section id="home" class="hero">
+<div class="hero-content">
+<h1 class="glitch" data-text="N_Comp_Store">N_Comp_Store</h1>
+<p class="tagline">Новейшие компьютеры — теперь у вас!</p>
+<a href="products.html" class="cta-btn">Смотреть сейчас</a>
+</div>
+
+<div class="particles"></div>
+</section>
+
+<section class="hero">
+<div class="arrow arrow-left">←</div>
+<div class="arrow arrow-right">→</div>
+
+<div class="slider" id="slider">
+<div class="slide active">
+<img src="./_2.png.webp" alt="Красный ПК" class="pc-img">
+</div>
+<div class="slide">
+<img src="./_3.png.webp" alt="Красный ПК" class="pc-img">
+</div>
+<div class="slide">
+<img src="./_5.png.webp" alt="Красный ПК" class="pc-img">
+</div>
+<div class="slide">
+<img src="./_11.png.webp" alt="Красный ПК" class="pc-img">
+</div>
+<div class="slide">
+<img src="./50.png.webp" alt="Красный ПК" class="pc-img">
+</div>
+</div>
+</section>
+
+<section id="products" class="products">
+<h2 class="section-title">ЛУЧШИЕ ТОВАРЫ</h2>
+<div class="product-grid">
+
+<div class="product-card">
+<img src="./1.MKgosLa4nEEeGV5ERNw_iE0RnkeWER5JXhSeQ5gZlEue.webp" alt="RTX 5090 ПК" class="product-img">
+<div class="product-info">
+<h3>RTX 5090 ПК</h3>
+<div class="product-details">
+<div class="price">45 000 000 сумов</div>
+<div class="specs">i9-14900K • 128 ГБ ОЗУ • RTX 5090</div>
+<button class="buy-btn" onclick="addToCart()">Купить</button>
+</div>
+</div>
+</div>
+
+<div class="product-card">
+<img src="./rog stirx.png" alt="Игровой ноутбук" class="product-img">
+<div class="product-info">
+<h3>Игровой ноутбук</h3>
+<div class="product-details">
+<div class="price">28 000 000 сумов</div>
+<div class="specs">RTX 4080 • 240 Гц OLED • 32 ГБ ОЗУ</div>
+<button class="buy-btn" onclick="addToCart()">Купить</button>
+</div>
+</div>
+</div>
+
+<div class="product-card">
+<img src="./i.webp" alt="Mac Book" class="product-img"> <div class="product-info">
+<h3>MacBook</h3>
+<div class="product-details">
+<div class="price">18 000 000 сумов</div>
+<div class="specs">Apple M4 Pro • 32 ГБ ОЗУ • 1 ТБ SSD • 14,2-дюймовый дисплей Liquid Retina XDR</div>
+<button class="buy-btn" onclick="addToCart()">Купить</button>
+</div>
+</div>
+</div>
+
+<div class="product-card">
+<img src="./hero-e1706827581510-768x649.png" alt="Игровой ПК с фиолетовой RGB-подсветкой" class="product-img">
+<div class="product-info">
+<h3>Компьютер с фиолетовой RGB-подсветкой</h3>
+<div class="product-details">
+<div class="price">52 000 000 сумов</div>
+<div class="specs">Ryzen 9 7950X3D • 64 ГБ DDR5 • RTX 5090 • 2 ТБ NVMe</div>
+        <div class="product-card">
+            <img src="/cxHkn1P24p.webp" alt="MSI Suprim Gaming PC" class="product-img">
+            <div class="product-info">
+                <h3>MSI Suprim LapTop</h3>
+                <div class="product-details">
+                    <div class="price">48,500,000 so‘m</div>
+                    <div class="specs">i7-14700K • 32GB RAM • RTX 4080 Suprim • Custom Loop</div>
+                    <button class="buy-btn" onclick="addToCart()">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./S00e0025359444354a396da6fce0d7f050.jpg_480x480.jpg" alt="Jonsbo MOD-5 Beast PC" class="product-img">
+            <div class="product-info">
+                <h3>Jonsbo Beast PC</h3>
+                <div class="product-details">
+                    <div class="price">65,000,000 so‘m</div>
+                    <div class="specs">Threadripper 7960X • 128GB RAM • Dual RTX 5090 • 4TB SSD</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./c5352251d4da2d7c887502799cbbe90a.jpg" alt="White Lian Li O11 PC" class="product-img">
+            <div class="product-info">
+                <h3>White O11 PC</h3>
+                <div class="product-details">
+                    <div class="price">38,000,000 so‘m</div>
+                    <div class="specs">i5-14600K • 32GB RAM • RTX 4070 Ti • 1TB SSD</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./Original-New-Mac-Book-PRO-14-14inch-M3-Max-Laptop-in-Stock.webp" alt="MacBook Pro M4" class="product-img">
+            <div class="product-info">
+                <h3>MacBook Pro M3</h3>
+                <div class="product-details">
+                    <div class="price">22,500,000 so‘m</div>
+                    <div class="specs">M3 Max • 48GB RAM • 2TB SSD • 16.2" Mini-LED</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./e472dbbb-9c6c-11ed-80f2-005056963b6e.jpg" alt="Acer Swift Evo Laptop" class="product-img">
+            <div class="product-info">
+                <h3>Acer Swift Evo</h3>
+                <div class="product-details">
+                    <div class="price">14,800,000 so‘m</div>
+                    <div class="specs">Intel Core i7-13700H • 16GB RAM • 1TB SSD • 14" OLED</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./1.W_SDTba19x2V7U0duSRx34fv9R095lUcjez1Hw.JOZFv9ZvaqmdEeejGsnXHL_Ix7DJaK3bxGvV_ysyLU4" alt="Razer Blade 16" class="product-img">
+            <div class="product-info">
+                <h3>Razer Blade 16</h3>
+                <div class="product-details">
+                    <div class="price">42,000,000 so‘m</div>
+                    <div class="specs">RTX 5090 • Ryzen AI 9 HX • 64GB RAM • 4K Mini-LED</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./corsair_crystal_series_570x_69_small.jpg" alt="Corsair Windforce PC" class="product-img">
+            <div class="product-info">
+                <h3>Corsair Windforce PC</h3>
+                <div class="product-details">
+                    <div class="price">39,900,000 so‘m</div>
+                    <div class="specs">i9-13900KS • 64GB RAM • RTX 4080 • 2TB Gen5 SSD</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./th.jpg" alt="Compact ITX Purple PC" class="product-img">
+            <div class="product-info">
+                <h3>Compact ITX PC</h3>
+                <div class="product-details">
+                    <div class="price">29,500,000 so‘m</div>
+                    <div class="specs">Ryzen 7 7800X3D • 32GB RAM • RTX 4070 • 1TB NVMe</div>
+                    <button class="buy-btn">Sotib olish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <h2 class="section-title">Bizning Komplektlarimiz</h2>
+
+<div class="container">
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ PREMIUM</div>
+    <img src="./38801185.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Premium<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Premium<br>
+      • Мышка: A4Tech A13Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi P27QCA<br>
+      • + RGB подсветка
+    </div>
+    <div class="price">5 384 115 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ MIDDLE</div>
+    <img src="./95392549.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Middle<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Middle<br>
+      • Мышка: A4Tech A139Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi G27<br>
+      • + HDMI кабель
+    </div>
+    <div class="price">3 687 750 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">КОМПЛЕКТ BASE</div>
+    <img src="./25856072.jpg.webp" alt="Premium PC">
+    <div class="title">Комплект Base<br>(Клавиатура, мышь, монитор)</div>
+    <div class="specs">
+      • Комплект Base<br>
+      • Мышка: A4Tech A139Pro<br>
+      • Клавиатура: A4Tech A820<br>
+      • Монитор: Redmi G24<br>
+      • + Базовый DisplayPort
+    </div>
+    <div class="price">3 000 750 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+
+  <div class="card premium">
+    <div class="badge">ИГРОВЫЕ НАУШНИКИ</div>
+    <img src="./19943012.jpg.webp" alt="Premium PC">
+    <div class="title">Игровые наушники<br>Super Harmony Sound</div>
+    <div class="specs">
+      • Цвет: Черный/Белый<br>
+      • Подсветка: RGB<br>
+      • Частота: от 20 Hz до 20 000 Hz<br>
+      • Сопротивление: 32 Ом<br>
+      • Микрофон: Да
+    </div>
+    <div class="price">590 040 so'm</div>
+    <button class="btn">ПОДРОБНЕЕ</button>
+    <button class="btn btn-order">ЗАКАЗАТЬ</button>
+  </div>
+</div>
+
+  <section class="hero">
+    <div class="images">
+      <img src="./1.hFXqoba5KLzcCOq57svmAfIDKrpaAKq0nAUquFYIIr4.Eh7QkQl5msTeyKZV0fXadlp6JULyXl2aG0mAXBralR8" class="pc pc1" alt="pc">
+      <img src="./64607477.jpg.webp" class="pc pc2" alt="pc">
+      <img src="./Снимок экрана 2025-11-21 150541.png" class="pc pc3" alt="pc">
+    </div>
+    <div class="text">
+      <h1>COMPSHOP – ДЛЯ ИЩУЩИХ<br>КАЧЕСТВО И СТИЛЬ.<br><br>НЕ КОНКУРИРУЕМ ЦЕНОЙ –<br>ДЕЛАЕМ НАДЁЖНО И ЧЕСТНО.</h1>
+      <p class="quote">«Мы не стремимся быть в каждом городе – мы стремимся быть в каждом сердце.» ©</p>
+    </div>
+  </section>
+
+  <section class="advantages">
+    <div class="card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>ГАРАНТИЯ</h3>
+      <p>Полная гарантия на все комплектующие + наша личная гарантия на сборку и кабель-менеджмент</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-headset"></i>
+      <h3>КОНСУЛЬТАЦИЯ</h3>
+      <p>Отвечаем 24/7, подбираем конфиг под ваш бюджет и задачи даже в 3 часа ночи</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-tools"></i>
+      <h3>ПРОФЕССИОНАЛИЗМ</h3>
+      <p>8 лет опыта, 3000+ собранных машин. Каждый ПК – это маленькое произведение искусства</p>
+    </div>
+  </section>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<section class="why-choose">
+    <div class="container">
+        <h2 class="section-title">NEGA BIZNI TANLASH KERE</h2>
+
+        <div class="swiper whyChooseSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="why-item">
+                        <div class="why-icon">⚡</div>
+                        <p>Siz eng kuchli va tezkor kompyuter olasiz — har qanday o‘yin va dastur uchun ideal!</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="why-item">
+                        <div class="why-icon">✨</div>
+                        <p>Dizayn jihatidan ajoyib — xonangizning eng chiroyli bezagi bo‘ladi</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="why-item">
+                        <div class="why-icon">🛡️</div>
+                        <p>Kompyuter uzoq yillar xizmat qiladi — sifat kafolati 100%</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="why-item">
+                        <div class="why-icon">🎖️</div>
+                        <p>Biz doim yordam beramiz — kafolat muddati davomida bepul xizmat!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<style>
+.why-choose {
+    padding: 180px 5%;
+    background: linear-gradient(135deg, #000 0%, #111 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-choose::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,0,68,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--red);
+    font-size: 3.2rem;
+    margin-bottom: 100px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 30px rgba(255,0,68,0.5);
+}
+
+.whyChooseSwiper {
+    padding: 40px 0 100px;
+}
+
+.why-item {
+    background: rgba(17,17,17,0.8);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255,0,68,0.2);
+    border-radius: 32px;
+    padding: 50px 30px;
+    text-align: center;
+    height: 100%;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.why-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,0,68,0.05) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.8s;
+}
+
+.why-item:hover::before {
+    transform: translateX(100%);
+}
+
+.why-item:hover {
+    transform: translateY(-25px) scale(1.05);
+    border-color: var(--red);
+    box-shadow: 0 40px 90px rgba(255,0,68,0.35);
+    background: rgba(26,26,26,0.95);
+}
+
+.why-icon {
+    font-size: 64px;
+    margin-bottom: 30px;
+    width: 130px;
+    height: 130px;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 60px rgba(255,0,68,0.7);
+    transition: all 0.5s;
+    animation: float 6s ease-in-out infinite;
+}
+
+.why-item:hover .why-icon {
+    transform: scale(1.2) rotate(15deg);
+    box-shadow: 0 0 90px rgba(255,0,68,1);
+}
+
+.why-item p {
+    color: #eee;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    font-weight: 500;
+    margin: 0;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.whyChooseSwiper .swiper-button-next,
+.whyChooseSwiper .swiper-button-prev {
+    color: white;
+    background: rgba(255,0,68,0.3);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,0,68,0.5);
+}
+
+.whyChooseSwiper .swiper-button-next:after,
+.whyChooseSwiper .swiper-button-prev:after {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.whyChooseSwiper .swiper-pagination-bullet {
+    background: #555;
+    width: 14px;
+    height: 14px;
+    opacity: 1;
+}
+
+.whyChooseSwiper .swiper-pagination-bullet-active {
+    background: var(--red);
+    transform: scale(1.4);
+    box-shadow: 0 0 30px rgba(255,0,68,0.9);
+}
+</style>
+
+<script>
+const whySwiper = new Swiper('.whyChooseSwiper', {
+    loop: true,
+    autoplay: {
+        delay: 4500,
+        disableOnInteraction: false,
+    },
+    speed: 1000,
+    grabCursor: true,
+    effect: 'coverflow',   
+    coverflowEffect: {
+        rotate: 30,
+        stretch: 0,
+        depth: 200,
+        modifier: 1,
+        slideShadows: true,
+    },
+    centeredSlides: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        1200: {
+            slidesPerView: 3,
+        }
+    },
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+});
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<section class="how-we-work-3d">
+    <div class="container-3d">
+
+        <h2 class="section-title-3d" data-text="QANDAY ISHLAYMIZ">QANDAY ISHLAYMIZ</h2>
+
+        <div class="progress-3d-container">
+            <div class="progress-3d-bar">
+                <div class="progress-3d-fill"></div>
+                <div class="progress-3d-glow"></div>
+            </div>
+            <div class="steps-3d">
+                <div class="step-3d active"><span>01</span></div>
+                <div class="step-3d"><span>02</span></div>
+                <div class="step-3d"><span>03</span></div>
+                <div class="step-3d"><span>04</span></div>
+                <div class="step-3d"><span>05</span></div>
+            </div>
+        </div>
+
+        <div class="swiper howWeWork3DSwiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="card-3d">
+                        <div class="icon-3d">📂</div>
+                        <h3>ARIZA</h3>
+                        <p>Menejerlarimiz sizning barcha xohishlaringizni hisobga olib, eng yaxshi konfiguratsiyani tanlaydi</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-3d">
+                        <div class="icon-3d">📦</div>
+                        <h3>KOMPLEKT QISMLAR</h3>
+                        <p>Tez yetkazib berish va rasmiy kafolat bilan barcha qismlarni ta'minlaymiz</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-3d">
+                        <div class="icon-3d">⚙️</div>
+                        <h3>YIG‘ISH</h3>
+                        <p>Tajribali mutaxassislar sifatli va ehtiyotkorlik bilan yig‘ishni amalga oshiradi</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-3d">
+                        <div class="icon-3d">🔧</div>
+                        <h3>TESTLASH</h3>
+                        <p>Har bir kompyuterni sinovdan o‘tkazamiz va video hisobot yuboramiz</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-3d">
+                        <div class="icon-3d">🚚</div>
+                        <h3>YETKAZIB BERISH</h3>
+                        <p>100% sug‘urtalangan, maxsus qadoqlash bilan butun O‘zbekistonga yetkazamiz</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+.how-we-work-3d {
+    padding: 200px 5% 250px;
+    background: linear-gradient(135deg, #000 0%, #0a0a0a 100%);
+    overflow: hidden;
+    position: relative;
+}
+.how-we-work-3d::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255,0,68,0.3), transparent 70%);
+    pointer-events: none;
+}
+
+.container-3d {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title-3d {
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    color: transparent;
+    background: linear-gradient(90deg, #ff0044, #ff4499);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 0 60px rgba(255,0,68,0.8);
+    margin-bottom: 120px;
+    position: relative;
+}
+.section-title-3d::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    color: rgba(255,0,68,0.1);
+    font-size: 8rem;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.progress-3d-container {
+    max-width: 900px;
+    margin: 0 auto 120px;
+    position: relative;
+}
+.progress-3d-bar {
+    height: 12px;
+    background: rgba(255,0,68,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+.progress-3d-fill {
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(90deg, #ff0044, #ff4499);
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 0 40px #ff0044;
+    transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.progress-3d-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,0,68,0.6), transparent);
+    animation: glowMove 4s infinite;
+}
+@keyframes glowMove {
+    0%,100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.steps-3d {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: -70px;
+    left: 0; right: 0;
+    padding: 0 20px;
+}
+.step-3d {
+    width: 80px; height: 80px;
+    background: rgba(20,20,20,0.9);
+    border: 4px solid rgba(255,0,68,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    color: #666;
+    transition: all 0.6s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.step-3d.active {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+    transform: scale(1.3) translateY(-20px);
+    box-shadow: 0 0 60px rgba(255,0,68,0.9);
+}
+
+.card-3d {
+    background: linear-gradient(145deg, #111, #222);
+    border: 2px solid rgba(255,0,68,0.4);
+    border-radius: 30px;
+    padding: 60px 40px;
+    text-align: center;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 30px 80px rgba(0,0,0,0.8),
+        inset 0 0 60px rgba(255,0,68,0.1);
+    transition: all 0.8s;
+    transform-style: preserve-3d;
+}
+.card-3d:hover {
+    transform: translateY(-40px) rotateY(10deg) rotateX(5deg);
+    box-shadow: 
+        0 60px 120px rgba(255,0,68,0.4),
+        0 0 100px rgba(255,0,68,0.6);
+}
+.icon-3d {
+    font-size: 70px;
+    width: 160px; height: 160px;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 35px;
+    box-shadow: 0 0 80px rgba(255,0,68,0.9);
+    transition: all 0.6s;
+}
+.card-3d:hover .icon-3d {
+    transform: scale(1.3) rotate(360deg);
+    box-shadow: 0 0 120px #ff0044;
+}
+.card-3d h3 {
+    color: var(--red);
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 25px 0;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 30px rgba(255,0,68,0.7);
+}
+.card-3d p {
+    color: #ddd;
+    font-size: 1.3rem;
+    line-height: 1.9;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const swiper = new Swiper('.howWeWork3DSwiper', {
+        loop: true,
+        autoplay: { delay: 4500, disableOnInteraction: false },
+        speed: 1200,
+        grabCursor: true,
+        effect: 'cube',
+        cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 40,
+            shadowScale: 0.94,
+        },
+
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    const fill = document.querySelector('.progress-3d-fill');
+    const steps = document.querySelectorAll('.step-3d');
+
+    swiper.on('slideChange', function () {
+        const i = swiper.realIndex;
+        fill.style.width = ((i + 1) / 5 * 100) + '%';
+        steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    });
+
+    swiper.emit('slideChange');
+});
+</script>
+
+<section class="location">
+    <h2 class="section-title">BIZ BILAN ALOQA</h2>
+    <div class="">
+    <div class="location-content">
+      <div class="info">
+        <div class="block">
+          <h3>ТЕЛЕФОН</h3>
+          <p><a href="tel:+79885490891">+7 988 549 08 91</a></p>
+        </div>
+
+        <div class="block">
+          <h3>ПОЧТА</h3>
+          <p><a href="mailto:compshoprnd@yandex.ru">compshoprnd@yandex.ru</a></p>
+        </div>
+
+        <div class="block">
+          <h3>АДРЕС</h3>
+          <p>г. Ростов-на-Дону, ул. Мечникова 150, 1 этаж</p>
+        </div>
+
+        <div class="block">
+          <h3>ГРАФИК</h3>
+          <p>Пн–Пт 10:00–19:00<br>Сб 10:00–17:00</p>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?z=17&ol=biz&oid=INSERT_ID_HERE"
+                frameborder="0" allowfullscreen="true"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <script src="main.js"></script>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastText">Mahsulot savatga qo'shildi!</span>
+</div>
+</div>
+</body>
+</html>

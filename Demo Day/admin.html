@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | N_Comp_Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root { --red:#ff0000; --dark:#0a0a0a; --green:#00ff41; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Exo 2',sans-serif; }
+        body { background:linear-gradient(135deg,#000,#111); color:#fff; min-height:100vh; padding:40px 20px; display:flex; align-items:center; justify-content:center; }
+        #loginBox {
+            background:rgba(20,20,20,0.98);
+            padding:50px 40px;
+            border-radius:20px;
+            border:2px solid rgba(255,0,0,0.6);
+            box-shadow:0 0 60px rgba(255,0,0,0.8);
+            width:100%;
+            max-width:420px;
+            text-align:center;
+        }
+        #loginBox h2 {
+            font-family:'Orbitron',sans-serif;
+            font-size:2.8rem;
+            color:var(--red);
+            text-shadow:0 0 20px #ff0000;
+            margin-bottom:30px;
+        }
+        #loginBox input {
+            width:100%;
+            padding:16px;
+            margin:20px 0;
+            background:#222;
+            border:2px solid var(--red);
+            border-radius:10px;
+            color:white;
+            font-size:1.2rem;
+            text-align:center;
+        }
+        #loginBox button {
+            padding:14px 40px;
+            background:var(--red);
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:1.1rem;
+            cursor:pointer;
+            font-weight:bold;
+            transition:0.3s;
+        }
+        #loginBox button:hover { background:#cc0000; box-shadow:0 0 20px #ff0000; }
+
+        .container { 
+            display:none; 
+            max-width:1300px; 
+            margin:auto; 
+            background:rgba(20,20,20,0.95); 
+            padding:40px; 
+            border-radius:20px; 
+            border:2px solid rgba(255,0,0,0.4); 
+            box-shadow:0 0 50px rgba(255,0,0,0.6); 
+        }
+        h1 { text-align:center; font-family:'Orbitron',sans-serif; font-size:3.5rem; color:var(--red); text-shadow:0 0 30px #ff0000; margin-bottom:40px; }
+        table { width:100%; border-collapse:collapse; background:rgba(30,30,30,0.9); border-radius:15px; overflow:hidden; margin-top:20px; }
+        th { background:linear-gradient(45deg,#ff0000,#cc0000); padding:20px; color:white; font-family:'Orbitron',sans-serif; text-transform:uppercase; }
+        td { padding:18px; text-align:center; border-bottom:1px solid rgba(255,0,0,0.3); }
+        tr:hover { background:rgba(255,0,0,0.2); }
+        tr.new { animation:pulse 2s infinite; background:rgba(255,0,0,0.35)!important; }
+        @keyframes pulse { 0%,100%{opacity:0.9} 50%{opacity:1} }
+        select { padding:10px 14px; border-radius:8px; background:#333; color:white; border:2px solid var(--red); cursor:pointer; }
+        .no-orders { text-align:center; padding:100px 20px; font-size:2rem; color:#666; }
+        .logout { 
+            position:absolute; top:20px; right:20px; 
+            padding:10px 20px; background:var(--red); color:white; 
+            border:none; border-radius:8px; cursor:pointer; font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loginBox">
+        <h2>ADMIN PANEL</h2>
+        <input type="password" id="password" placeholder="Parolni kiriting">
+        <button onclick="checkPassword()">Kirish</button>
+        <p style="margin-top:20px; color:#888; font-size:0.9rem;">Maslahat: 12345</p>
+    </div>
+
+    <button class="logout" onclick="logout()" style="display:none;">Chiqish</button>
+    <div class="container" id="adminPanel">
+        <h1>ADMIN PANEL</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ism Familiya</th>
+                    <th>Telefon</th>
+                    <th>Manzil</th>
+                    <th>To‘lov</th>
+                    <th>Sana</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+<script>
+    const CORRECT_PASSWORD = "12345";
+
+    function checkPassword() {
+        const input = document.getElementById("password").value;
+        if (input === CORRECT_PASSWORD) {
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("adminPanel").style.display = "block";
+            document.querySelector(".logout").style.display = "block";
+            loadOrders();
+        } else {
+            alert("Noto‘g‘ri parol! Qayta urining.");
+            document.getElementById("password").value = "";
+        }
+    }
+
+    function logout() {
+        document.getElementById("loginBox").style.display = "block";
+        document.getElementById("adminPanel").style.display = "none";
+        document.querySelector(".logout").style.display = "none";
+        document.getElementById("password").value = "";
+    }
+
+    document.getElementById("password").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") checkPassword();
+    });
+
+    function loadOrders() {
+        const tbody = document.getElementById("tbody");
+        const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+        if (orders.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="no-orders">Hozircha buyurtma yo‘q</td></tr>`;
+        } else {
+            orders.forEach((order, i) => {
+                const isNew = !order.status || order.status === "Yangi";
+                const row = document.createElement("tr");
+                if (isNew) row.classList.add("new");
+
+                row.innerHTML = `
+                    <td>${i+1}</td>
+                    <td><strong>${order.name || "Noma'lum"}</strong></td>
+                    <td>${order.phone || "-"}</td>
+                    <td>${order.address || "-"}</td>
+                    <td style="color:#00ff41; font-weight:bold;">${parseInt(order.total || 0).toLocaleString()} so‘m</td>
+                    <td>${order.date || "Noma'lum"}</td>
+                    <td>
+                        <select onchange="updateStatus(${i}, this.value)">
+                            <option value="Yangi" ${isNew ? "selected" : ""}>Yangi</option>
+                            <option value="Jarayonda" ${order.status==="Jarayonda" ? "selected" : ""}>Jarayonda</option>
+                            <option value="Yetkazib berildi" ${order.status==="Yetkazib berildi" ? "selected" : ""}>Yetkazib berildi</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    }
+
+    function updateStatus(index, status) {
+        const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+        orders[index].status = status;
+        localStorage.setItem("orders", JSON.stringify(orders));
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
